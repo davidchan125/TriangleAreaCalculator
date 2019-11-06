@@ -20,13 +20,33 @@ public class TriangleAreaCalculator {
     public static void main(String[] args) {
         // Area of a triangle = sqrt(p(p-a)(p-b)(p-c)), where p = 1/2 * perimeter
         Scanner input = new Scanner(System.in);
+        double side1 = 0, side2 = 0, side3 = 0;
+        boolean side1Entered = false, side2Entered = false, side3Entered = false;
         
-        System.out.println("Enter the length of the 1st side: ");
-        double side1 = input.nextDouble();
-        System.out.println("Enter the length of the 2nd side: ");
-        double side2 = input.nextDouble();
-        System.out.println("Enter the length of the 3rd side: ");
-        double side3 = input.nextDouble();
+        while (!side1Entered || !side2Entered || !side3Entered) {
+            try {
+                if (!side1Entered) {
+                    System.out.println("Enter the length of the 1st side: ");
+                    side1 = input.nextDouble();
+                    side1Entered = true;
+                }
+                if (!side2Entered) {
+                    System.out.println("Enter the length of the 2nd side: ");
+                    side2 = input.nextDouble();
+                    side2Entered = true;
+                }
+                if (!side3Entered) {
+                    System.out.println("Enter the length of the 3rd side: ");
+                    side3 = input.nextDouble();
+                    side3Entered = true;
+                }
+            } catch (Exception e) {
+                System.out.println("Value for side entered is invalid.");
+                // Moves the cursor to a new line so the Scanner doesn't loop-read the last entered value
+                input.nextLine();
+            }
+        }
+        
         System.out.println("The area of the triangle is: ");
         double perimeter = side1 + side2 + side3;
         double p = perimeter/2.0;
